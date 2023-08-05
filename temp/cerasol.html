@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block content %}
+  <div class="slider-container">
+    <div class="slide">
+      <div class="slide-content">
+        <h1>Slide 1 Heading</h1>
+        <p>Slide 1 Subheading</p>
+      </div>
+      {% static 'img/image.jpeg' %}
+      <img src="{% static 'img/image.jpeg' %}" alt="Slide 1">
+    </div>
+    <div class="slide">
+      <div class="slide-content">
+        <h1>Slide 2 Heading</h1>
+        <p>Slide 2 Subheading</p>
+      </div>
+      <img src="{% static 'img/image.jpeg' %}" alt="Slide 2">
+    </div>
+    <div class="slide">
+      <div class="slide-content">
+        <h1>Slide 3 Heading</h1>
+        <p>Slide 3 Subheading</p>
+      </div>
+      <img src="{% static 'img/image.jpeg' %}" alt="Slide 3">
+    </div>
+  </div>
+
+{% endblock content %}

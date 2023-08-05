@@ -1,0 +1,137 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cerasol.css' %}">
+</head>
+<body>
+    <header>
+       <nav>
+        <div class="logo"><span>Jo</span>Hir</div>
+        <div class="search">
+            <input type="text" name="q" id="search">
+            
+            <button type="submit">Search</button>
+        </div>
+        <div class="items">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">Job Search</a></li>
+                <li><a href="">Job Donate</a></li>
+                <li><a href="">Profile</a></li>
+            </ul>
+        </div>
+       </nav>
+    </header>
+
+    <main>     
+        <div class="slider-container">
+            <div class="slide">
+              <div class="slide-content">
+                <h1>Lots Of Jobs</h1>
+                <p>Only for you, according to your Skills. Your skills are precious and this platform give value to your skills</p>
+              </div>
+              <div class="i">
+                  <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.0HRd9mE_O2qWVzPKb6U9pwHaFj%26pid%3DApi&f=1&ipt=3edd2481ce071fa195d0f8b3d56b1014a46c3544d7547ec9bb917fb8b370555f&ipo=images" alt="Slide 1">
+              </div>
+            </div>
+            <div class="slide">
+              <div class="slide-content">
+                <h1>Donate Your Job</h1>
+                <p>If you want to leave your job and you want to give another potential person to your company in your place then this is the right place to find the potential person for your company</p>
+              </div>
+              <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.5L3QAKg0HQZ5oAiTi6D9XQHaFa%26pid%3DApi&f=1&ipt=df803ffcb327af0ec164b866b8050029f8793ade7febb55f9be4aeecc07d633a&ipo=images" alt="Slide 2">
+            </div>
+            <div class="slide">
+              <div class="slide-content">
+                <h1>Internship</h1>
+                <p>If you are looking for Internship which is only for you, which is according to you and which is best for you then it is the best plateform which can full fill your need.</p>
+              </div>
+              <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.u6_Q5Rca9wHq2eefMHqeRAHaE7%26pid%3DApi&f=1&ipt=bb1f8e40705c08b877199368a5d24a85eb9ca7c3edcf6f5275c2377171fa6156&ipo=images" alt="Slide 3">
+            </div>
+        </div> 
+        <div class="h2">
+
+            <h2> > Jobs for you</h2>
+        </div>
+<section>
+    {% for i in jPost %}
+    <div class="jbox">
+        <h2>{{i.job_titel}}</h2>
+        <p>{{i.job_desc}}</p>
+        <p> last date to apply <span>{{i.last_date}}</span></p>
+        <p>vacancy <span>{{i.vacancy}}</span></p>
+        <p>experience required <span>{{i.experience_required}}</span></p>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="job" value="{{i.id}}">
+            <input type="hidden" name="user" value="{{request.user}}">
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+    {% endfor %}
+</section>
+<div class="h2">
+
+    <h2> > Internship for you</h2>
+</div>
+<section>
+
+    {% for i in iPost %}
+    <div class="jbox">
+        <h2>{{i.i_titel}}</h2>
+        <p>{{i.i_desc}}</p>
+        <p>last date to apply <span>{{i.last_date}}</span></p>
+        <p>vacency <span>{{i.vacancy}}</span></p>
+        <!-- <p>{{i.experience_required}}</p> -->
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="inte" value="{{i.id}}">
+            <input type="hidden" name="user" value="{{request.user}}">
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+    {% endfor %}
+</section>
+<div class="h2">
+
+    <h2> > Change apportunity for you</h2>
+</div>
+<section>
+
+    {% for i in xPost %}
+    <div class="jbox">
+        <h2>{{i.job_titel}}</h2>
+        <p>{{i.job_desc}}</p>
+        <p>last date to apply <span>{{i.last_date}}</span></p>
+        <!-- <p>{{i.vacancy}}</p> -->
+        <p>experience required <span>{{i.experience_required}}</span></p>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="change" value="{{i.id}}">
+            <input type="hidden" name="user" value="{{request.user}}">
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+    {% endfor %}
+</section>
+
+    {% block content %}
+
+    {% endblock content %}
+
+    </main>
+
+    <footer>
+        <p>&copy; 2023 My Website. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/cerasol.js' %}"></script>
+</body>
+</html>
